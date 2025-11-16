@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python-version: ["3.8", "3.9", "3.10", "3.11"]
+        python-version: ["3.12", "3.13", "3.14"]
 
     steps:
     - uses: actions/checkout@v4
@@ -40,7 +40,7 @@ jobs:
         fail_ci_if_error: false
 
     - name: Retrieve secrets from Bitwarden Secrets Manager
-      if: matrix.python-version == '3.11' && (github.event_name == 'push' || github.event_name == 'release')
+      if: matrix.python-version == '3.14' && (github.event_name == 'push' || github.event_name == 'release')
       uses: bitwarden/sm-action@v1
       with:
         access_token: ${{ secrets.BW_ACCESS_TOKEN }}
@@ -48,7 +48,7 @@ jobs:
           SECRET_ID_1 > HEVY_API_KEY
 
     - name: Run integration tests
-      if: matrix.python-version == '3.11' && (github.event_name == 'push' || github.event_name == 'release')
+      if: matrix.python-version == '3.14' && (github.event_name == 'push' || github.event_name == 'release')
       env:
         HEVY_API_KEY: ${{ env.HEVY_API_KEY }}
       run: python run_tests.py integration
@@ -64,7 +64,7 @@ jobs:
     - name: Set up Python
       uses: actions/setup-python@v4
       with:
-        python-version: "3.11"
+        python-version: "3.14"
 
     - name: Retrieve PyPI token from Bitwarden Secrets Manager
       uses: bitwarden/sm-action@v1
