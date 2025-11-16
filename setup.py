@@ -30,5 +30,13 @@ setup(
         "python-dateutil>=2.8.0",
         "flask>=2.0.0",
     ],
+    extras_require={
+        "test": [
+            "pytest>=7.0.0",
+            "pytest-mock>=3.10.0",
+            "pytest-cov>=4.0.0",
+            "responses>=0.23.0",
+        ],
+    },
     python_requires=">=3.7",
 )

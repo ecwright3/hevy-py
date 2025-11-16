@@ -286,7 +286,7 @@ class PaginatedWorkoutEvents(BaseModel):
 
 # Other response models
 class WorkoutCount(BaseModel):
-    workout_count: int = Field(..., default=42)
+    workout_count: int = Field(default=42)
 
 
 class WebhookSubscription(BaseModel):
