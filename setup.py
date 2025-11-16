@@ -6,7 +6,7 @@ with open("README.md", "r", encoding="utf-8") as fh:
 setup(
     name="hevy-py",
     version="0.0.1",
-    author="Generated SDK",
+    author="Gene Wright",
     description="Python SDK for Hevy API",
     long_description=long_description,
     long_description_content_type="text/markdown",
@@ -30,5 +30,13 @@ setup(
         "python-dateutil>=2.8.0",
         "flask>=2.0.0",
     ],
+    extras_require={
+        "test": [
+            "pytest>=7.0.0",
+            "pytest-mock>=3.10.0",
+            "pytest-cov>=4.0.0",
+            "responses>=0.23.0",
+        ],
+    },
     python_requires=">=3.7",
 )

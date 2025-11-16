@@ -1,5 +1,8 @@
 # Hevy Py
 
+[![Test](https://github.com/ecwright3/hevy-py/actions/workflows/test.yml/badge.svg)](https://github.com/ecwright3/hevy-py/actions/workflows/test.yml)
+[![codecov](https://codecov.io/gh/ecwright3/hevy-py/branch/main/graph/badge.svg)](https://codecov.io/gh/ecwright3/hevy-py)
+
 A complete Python SDK for the Hevy API.
 
 A complete Python SDK for the Hevy API (https://api.hevyapp.com/docs/).
@@ -251,6 +254,10 @@ All API responses are parsed into Pydantic models for type safety. See `hevy_sdk
 ## Examples
 
 See `example.py` for a comprehensive example demonstrating all SDK features.
+
+## Author
+
+Gene Wright
 
 ## License
 
