@@ -31,8 +31,7 @@ def run_tests(test_type="all", coverage=False):
     # Add additional pytest options
     cmd.extend([
         "-v",
-        "--tb=short",
-        "--strict-markers"
+        "--tb=short"
     ])
 
     print(f"Running command: {' '.join(cmd)}")

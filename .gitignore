@@ -160,4 +160,3 @@ logs/
 
 # Test files
 test_*.py
-tests/
