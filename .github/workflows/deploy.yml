@@ -1,58 +1,10 @@
-name: Test and Deploy
+name: Deploy
 
 on:
-  push:
-    branches: [ main, develop ]
-  pull_request:
-    branches: [ main, develop ]
   release:
     types: [published]
 
 jobs:
-  test:
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        python-version: ["3.12", "3.13", "3.14"]
-
-    steps:
-    - uses: actions/checkout@v4
-
-    - name: Set up Python ${{ matrix.python-version }}
-      uses: actions/setup-python@v4
-      with:
-        python-version: ${{ matrix.python-version }}
-
-    - name: Install dependencies
-      run: |
-        python -m pip install --upgrade pip
-        pip install -e .[test]
-
-    - name: Run unit tests
-      run: python run_tests.py unit --coverage
-
-    - name: Upload coverage to Codecov
-      uses: codecov/codecov-action@v3
-      with:
-        file: ./coverage.xml
-        flags: unittests
-        name: codecov-umbrella
-        fail_ci_if_error: false
-
-    - name: Retrieve secrets from Bitwarden Secrets Manager
-      if: matrix.python-version == '3.14' && (github.event_name == 'push' || github.event_name == 'release')
-      uses: bitwarden/sm-action@v1
-      with:
-        access_token: ${{ secrets.BW_ACCESS_TOKEN }}
-        secrets: |
-          SECRET_ID_1 > HEVY_API_KEY
-
-    - name: Run integration tests
-      if: matrix.python-version == '3.14' && (github.event_name == 'push' || github.event_name == 'release')
-      env:
-        HEVY_API_KEY: ${{ env.HEVY_API_KEY }}
-      run: python run_tests.py integration
-
   deploy:
     runs-on: ubuntu-latest
     if: github.event_name == 'release' && github.event.action == 'published'
