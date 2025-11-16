@@ -22,7 +22,7 @@ jobs:
       with:
         access_token: ${{ secrets.BW_ACCESS_TOKEN }}
         secrets: |
-          SECRET_ID_2 > PYPI_API_TOKEN
+          PYPI_API_TOKEN > PYPI_API_TOKEN
 
     - name: Install build dependencies
       run: |
